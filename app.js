@@ -178,14 +178,20 @@ mongoose.connect(uristring, function (err, res) {
 	var message = req.query.message.toLowerCase();
 	message = message.replace(/^\s+|\s+$/g,'')
 	console.log(message)
+/*
 	Meal.find({'fooditem':message, 'meals': whichmeal()}, 'dininghalls', function(err, dhs){
 	    if (err) return handleError(err);
   	    //console.log('%s %s is a %s.', person.name.first, person.name.last, person.occupation)
   	    console.log(dhs)
             res.send(dhs);
 	}
+*/
+	Meal.find(function (err, food) {
+	    if (err) return console.error(err);
+	    console.log(food)
+	})
 		  //console.log(req.route.params);
-		 )})
+		 })
 
     app.get('/', function(req, res){
 	res.sendfile(__dirname + '/index.html');
