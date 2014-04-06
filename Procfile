@@ -1,2 +1,2 @@
-web: grunt biuld
+web: grunt build
 web: grunt serve
