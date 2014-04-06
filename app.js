@@ -186,7 +186,7 @@ app.get('/send',function(req,res){
 
     var args = req.query;
 
-    client.messages.create({
+    client.sms.messages.create({
         body: args.message,
         to: args.to,
         from: "+2406502344",
