@@ -1,1 +1,33 @@
-<div class="header"><ul class="nav nav-pills pull-right"><li class="active"><a ng-href="#">Home</a></li><li><a ng-href="#">About</a></li><li><a ng-href="#">Contact</a></li></ul><h3 class="text-muted">AngBacon</h3></div><div class="jumbotron"><div><button class="btn btn-success" ng-click="showLeaflet()">Fitbounds</button><h2>Map time</h2><!--     <p><a class="btn btn-lg btn-success" ng-click="unfuck()">Locate Bacon <span class="glyphicon glyphicon-screenshot"></span></a></p> --><!--     <leaflet width="600px" height="400px" markers="markers" center="center" ></leaflet> --><leaflet id="map" height="400px" center="lisbon" markers="markers"></leaflet><div></div></div></div><div class="row marketing"><h4>Why?</h4><p>explaination here...</p><h4>How?</h4><p>We scrape UCSC's dining website using kimonolabs, store the data in Mongo DB...</p><h4>Who?</h4><p>Tyler Smith, James Shedel, Rahul Palamuttam, Joe Rowley</p></div><div class="footer"><p><span class="glyphicon glyphicon-heart"></span></p></div>
+<div class="header">
+    <ul class="nav nav-pills pull-right">
+        <li class="active"><a ng-href="#">Home</a>
+        </li>
+        <li><a ng-href="#">About</a>
+        </li>
+        <li><a ng-href="#">Contact</a>
+        </li>
+    </ul>
+    <h3 class="text-muted">AngBacon</h3>
+</div>
+<div class="jumbotron">
+    <div>
+        <button class="btn btn-success" ng-click="showLeaflet()">Fitbounds</button>
+        <h2>Map time</h2>
+        <!--     <p><a class="btn btn-lg btn-success" ng-click="unfuck()">Locate Bacon <span class="glyphicon glyphicon-screenshot"></span></a></p> -->
+        <!--     <leaflet width="600px" height="400px" markers="markers" center="center" ></leaflet> -->
+        <leaflet id="map" height="400px" center="lisbon" markers="markers"></leaflet>
+        <div></div>
+    </div>
+</div>
+<div class="row marketing">
+    <h4>What Now?</h4>
+    <p>Now that you have the power to fulfill your bacon dreams, we hope you can fulfill somebody else's dreams. We encourage you to donate to a charity of your choice in Santa Cruz or where ever.</p>
+    <h4>How?</h4>
+    <p>We scrape UCSC's dining website using kimonolabs, store the data in Mongo DB...</p>
+    <h4>Who?</h4>
+    <p>Tyler Smith, James Shedel, Rahul Palamuttam, Joe Rowley</p>
+</div>
+<div class="footer">
+    <p><span class="glyphicon glyphicon-heart"></span>
+    </p>
+</div>
