@@ -370,7 +370,7 @@ module.exports = function (grunt) {
     'karma'
   ]);
 
-  grunt.registerTask('build', [
+  grunt.registerTask('heroku', [
     'clean:dist',
     'bowerInstall',
     'useminPrepare',
@@ -393,7 +393,7 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-    grunt.registerTask('heroku',
-		       ['build']);
+//    grunt.registerTask('heroku',
+//		       ['build']);
 
 };
