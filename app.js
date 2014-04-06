@@ -222,6 +222,7 @@ mongoose.connect(uristring, function (err, res) {
     app.get('/joe', function(req, res){
 	//sending maybe food, maybe location
 	//returning list of dining halls 
+        res.setHeader("Access-Control-Allow-Origin", "*");
 	var message = req.query.message.toLowerCase();
 	message = message.replace(/^\s+|\s+$/g,'')
 	console.log(message)
