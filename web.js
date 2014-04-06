@@ -7,11 +7,11 @@ app = express();
 
 
 app.configure(function(){
-    // app.use('/assets/css', express.static(__dirname+'/assets/css'));
-    // app.use('/assets/js', express.static(__dirname+'/assets/js'));
-    // app.use('/xassets/screenshots', express.static(__dirname+'/assets/screenshots'));
-    // app.use('/assets/images', express.static(__dirname+'/assets/images'));
-    app.use('/app', express.static( dirname+'/assets/css'));
+    app.use('/fonts', express.static(__dirname+'/fonts'));
+    app.use('/styles', express.static(__dirname+'/styles'));
+    app.use('/views', express.static(__dirname+'/views'));
+    app.use('/scripts', express.static(__dirname+'/scripts'));
+    app.use('/images', express.static(__dirname+'/images'));
 });
 
 app.get('/', function(req, res){
