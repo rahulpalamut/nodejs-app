@@ -1,28 +1,15 @@
 {
-  "name": "hackathon",
+  "name": "dist",
   "version": "0.0.0",
-  "description": "the",
+  "description": "heroku app",
   "main": "app.js",
-  "dependencies": {
-    "express": "^3.5.1",
-    "logfmt": "^1.1.2"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rahulpalamut/nodejs-app"
-  },
-  "keywords": [
-    "example",
-    "heroku"
-  ],
-  "author": "rahul",
-  "license": "GNU",
-  "bugs": {
-    "url": "https://github.com/rahulpalamut/nodejs-app/issues"
-  },
-  "homepage": "https://github.com/rahulpalamut/nodejs-app"
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "logfmt": "^1.1.2",
+    "express": "^3.5.1"
+  }
 }
