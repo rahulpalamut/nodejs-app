@@ -208,7 +208,7 @@ app.get('/recv',function(req,res){
     var location = tokens[0].toLowerCase();
     var food = tokens[1].toLowerCase();
     var args = req.query;
-
+    console.log(food);
     client.messages.create({
         body: food,
         to: from,
@@ -218,7 +218,7 @@ app.get('/recv',function(req,res){
 	    console.log(err);
 	    res.send(err);
         }
-        //console.log(message.sid);
+        console.log(message.sid);
         res.send(message.sid);
     });
     //getClosest(location,food);
