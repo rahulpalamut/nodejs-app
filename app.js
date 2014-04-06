@@ -182,6 +182,7 @@ mongoose.connect(uristring, function (err, res) {
 	    if (err) return handleError(err);
   	    //console.log('%s %s is a %s.', person.name.first, person.name.last, person.occupation)
   	    console.log(dhs)
+            res.send(dhs);
 	}
 		  //console.log(req.route.params);
 		 )})
