@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/rahulpalamut/nodejs-app"
   "engines": {
-      "nodejs": "v0.10.26"
+      "node.js": "v0.10.26"
   }
 }
