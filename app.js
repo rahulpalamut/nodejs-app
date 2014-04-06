@@ -2,7 +2,8 @@
 // this works for some reason
 var port = Number(process.env.PORT || 5000);
 
-var express = require('express'),
+var express = require('express')
+var http = require('http');
 
 app = express();
 
@@ -24,6 +25,52 @@ var uristring =
     process.env.MONGOLAB_URI ||
     process.env.MONGOHQ_URL ||
     'mongodb://localhost/test';
+
+function httpGet(theUrl, meal, dininghall)
+{
+    http.get(theUrl, function(res) {
+  	//console.log("Got response: " + res.read());
+  	var body = ''
+  	res.on('data', function (chunk) {
+  	    body += chunk
+  	});
+  	res.on('end', function() {
+    	    //console.log(body);
+    	    var dhinfo = JSON.parse(body)
+    	    var collection = dhinfo.results.collection1
+    	    for(var i = 0; i < collection.length; ++i){
+		/*
+      		  Meal.find({'fooditem':collection[i].Item.text}, function (err, food) {
+    		  if (err) return console.error(err);
+   		  console.log('I found' + food)
+  		  })*/
+    		var fooditem = new Meal({ 
+    		    fooditem: collection[i].Item.text.toLowerCase(),
+    		    meals: meal,
+    		    dininghalls: dininghall 
+    		});
+
+
+  		fooditem.save(function (err, fooditem) {
+    		    if (err) return console.error(err);
+    		    console.log('save successful')
+    		    //fluffy.speak();
+  		});
+
+    	    }
+    	    Meal.find(function(err, food){
+		if (err) return console.error(err);
+ 		console.log('I found' + food)
+
+	    })
+	    //throw "exit";
+    	    //console.log(dhinfo.results.collection1[0].Item.text)
+  	});
+    }).on('error', function(e) {
+  	console.log("Got error: " + e.message);
+  	return null
+    });
+}
 
 function whichmeal(){
     var hour = date.getHours()
@@ -189,12 +236,76 @@ mongoose.connect(uristring, function (err, res) {
 	Meal.find(function (err, food) {
 	    if (err) return console.error(err);
 	    console.log(food)
+	    res.send(food);
 	})
 		  //console.log(req.route.params);
 		 })
 
     app.get('/', function(req, res){
 	res.sendfile(__dirname + '/index.html');
+    });
+
+    app.get('/scrape', function(req, res){
+       res.send('scraped') 
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=30&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Breakfast+++served+until+11am&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'breakfast', 'eight')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=30&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Lunch served until 2pm&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'lunch', 'eight')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=30&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Dinner+served+until+8pm&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'lunch', 'eight')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=5&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Breakfast+++served+until+11am&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'breakfast', 'cowell')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=5&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Lunch served until 2pm&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'lunch', 'cowell')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=5&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Dinner+served+until+8pm&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'dinner', 'cowell')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=20&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Breakfast+++served+until+11am&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'breakfast', 'crown')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=20&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Lunch served until 2pm&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'lunch', 'crown')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=20&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Dinner+served+until+8pm&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'dinner', 'crown')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=25&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Breakfast+++served+until+11am&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'breakfast', 'porter')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=25&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Lunch served until 2pm&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'lunch', 'porter')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=25&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Dinner+served+until+8pm&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'dinner', 'porter')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=40&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Breakfast+++served+until+11am&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'breakfast', 'nine')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=40&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Lunch served until 2pm&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'lunch', 'nine')
+
+httpGet('http://www.kimonolabs.com/api/ce6dd1oc?&?locationNum=40&dtdate=' 
+	+ date.getMonth() + '%2F' + date.getDate() + '%2F' + date.getYear() + 
+	'&Dinner+served+until+8pm&apikey=2323b50a71ade7d336c82c9f9dd5c072', 'dinner', 'nine')
     });
 
     app.listen(port);
